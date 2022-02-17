@@ -3,7 +3,6 @@ const authController = require("../controllers/auth.controller");
 const router = express.Router();
 const auth = require("../middleware/auth");
 
-// Register
 router.post("/register", authController.register);
 router.post("/signin", authController.signIn);
 router.get("/isauth", auth(), authController.isAuth);
