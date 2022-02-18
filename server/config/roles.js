@@ -11,6 +11,7 @@ let grantsObject = {
   admin: {
     profile: allRights,
     brand: allRights,
+    product: allRights,
   },
   user: {
     profile: {
@@ -18,6 +19,9 @@ let grantsObject = {
       "update:own": ["*", "!password", "!_id"],
     },
     brand: {
+      "read:any": ["*"],
+    },
+    product: {
       "read:any": ["*"],
     },
   },
