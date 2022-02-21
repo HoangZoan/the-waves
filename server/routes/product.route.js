@@ -14,6 +14,10 @@ router.post(
 router
   .route("/product/:id")
   .get(productsController.getProductById)
-  .patch(auth("updateAny", "product"), productsController.updateProductById);
+  .patch(auth("updateAny", "product"), productsController.updateProductById)
+  .delete(auth("deleteAny", "product"), productsController.deleteProductById);
+
+router.get("/all", productsController.allProducts);
+router.post("/paginate/all", productsController.paginateProducts);
 
 module.exports = router;
