@@ -1,7 +1,21 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import Header from "./components/navigation/header";
+import Footer from "./components/navigation/footer";
+import Home from "./components/home";
 
 function App() {
-  return <BrowserRouter className="App">Hello</BrowserRouter>;
+  return (
+    <BrowserRouter className="App">
+      <Header />
+
+      <Switch>
+        <Route path="/" component={Home} />
+      </Switch>
+
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
 export default App;
