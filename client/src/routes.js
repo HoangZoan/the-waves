@@ -1,21 +1,51 @@
+import { Fragment, useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import MainLayout from "./hoc/mainLayout";
+import Loader from "./utils/loader";
 
 import Header from "./components/navigation/header";
 import Footer from "./components/navigation/footer";
 import Home from "./components/home";
+import RegisterLogin from "./components/auth";
 
-function App() {
+import { useDispatch, useSelector } from "react-redux";
+import { userIsAuth } from "./store/actions/users.action";
+
+const Routes = (props) => {
+  const [loading, setLoading] = useState(true);
+  const { auth } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userIsAuth());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (auth !== null) {
+      setLoading(false);
+    }
+  }, [auth]);
+
   return (
     <BrowserRouter className="App">
-      <Header />
+      {loading ? (
+        <Loader full={true} />
+      ) : (
+        <Fragment>
+          <Header />
 
-      <Switch>
-        <Route path="/" component={Home} />
-      </Switch>
+          <MainLayout>
+            <Switch>
+              <Route path="/sign_in" component={RegisterLogin} />
+              <Route path="/" component={Home} />
+            </Switch>
+          </MainLayout>
 
-      <Footer />
+          <Footer />
+        </Fragment>
+      )}
     </BrowserRouter>
   );
-}
+};
 
-export default App;
+export default Routes;

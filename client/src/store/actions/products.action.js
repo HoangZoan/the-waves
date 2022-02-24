@@ -23,7 +23,9 @@ export const productsBySort = ({ limit, sortBy, order, where }) => {
           return false;
       }
     } catch (error) {
-      console.log(error);
+      dispatch(
+        actions.errorGlobal("Sorry, something wrong happend. Please try again")
+      );
     }
   };
 };

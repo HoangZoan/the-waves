@@ -4,6 +4,7 @@ import SlimPromotion from "../../utils/promotions/slimBlock";
 import { useDispatch, useSelector } from "react-redux";
 import { productsBySort } from "../../store/actions/products.action";
 import CardBlock from "../../utils/products/card.blocks";
+import Loader from "../../utils/loader";
 
 const slimPromotion = {
   img: "./images/featured/featured_home_3.jpg",
@@ -40,9 +41,19 @@ const Home = () => {
     <div>
       <Featured />
 
-      {bySold && <CardBlock items={bySold} title="Best selling guitar" />}
+      {bySold ? (
+        <CardBlock items={bySold} title="Best selling guitars" />
+      ) : (
+        <Loader />
+      )}
 
       <SlimPromotion items={slimPromotion} />
+
+      {byDate ? (
+        <CardBlock items={byDate} title="Latest guitars on the shop" />
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

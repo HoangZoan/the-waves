@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { AddShoppingCart } from "@mui/icons-material";
+import { toast } from "react-toastify";
+import cookie from "react-cookies";
 
 export const WavesButton = (props) => {
   let template = "";
@@ -15,6 +18,19 @@ export const WavesButton = (props) => {
         </Link>
       );
       break;
+    case "bag_link":
+      template = (
+        <div
+          className="bag_link"
+          onClick={() => {
+            props.runAciton();
+          }}
+          style={{ ...props.style }}
+        >
+          <AddShoppingCart style={{ fontSize: props.iconSize }} />
+        </div>
+      );
+      break;
     default:
       template = "";
   }
@@ -28,4 +44,34 @@ export const renderCardImage = (image) => {
   } else {
     return "./images/image_not_availble.png";
   }
+};
+
+export const showToast = (type, msg) => {
+  switch (type) {
+    case "SUCCESS":
+      toast.success(msg, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      break;
+    case "ERROR":
+      toast.error(msg, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      break;
+    default:
+      return false;
+  }
+};
+
+export const errorHelper = (formik, value) => ({
+  error: formik.errors[value] && formik.touched[value] ? true : false,
+  helperText:
+    formik.errors[value] && formik.touched[value] ? formik.errors[value] : null,
+});
+
+export const getTokenCookie = () => cookie.load("your-access-token");
+export const removeTokenCookie = () =>
+  cookie.remove("your-access-token", { path: "/" });
+export const getAuthHeader = () => {
+  return { headers: { Authorization: `Bearer ${getTokenCookie()}` } };
 };
