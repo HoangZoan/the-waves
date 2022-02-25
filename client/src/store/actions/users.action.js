@@ -100,3 +100,25 @@ export const userUpdateProfile = (data) => {
     }
   };
 };
+
+export const userChangeEmail = (data) => {
+  return async (dispatch) => {
+    try {
+      await axios.patch(
+        `/api/users/email`,
+        {
+          email: data.email,
+          newEmail: data.newEmail,
+        },
+        getAuthHeader()
+      );
+
+      dispatch(actions.userChangeEmail(data.newEmail));
+      dispatch(
+        actions.successGlobal("Success, remember to verify your account")
+      );
+    } catch (error) {
+      dispatch(actions.errorGlobal(error.response.data.message));
+    }
+  };
+};

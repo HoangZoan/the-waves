@@ -7,6 +7,8 @@ import {
   AUTH_USER,
   SIGN_OUT,
   UPDATE_USER_PROFILE,
+  USER_CHANGE_EMAIL,
+  GET_PROD_BY_PAGINATE,
 } from "../types";
 
 // USER
@@ -25,6 +27,11 @@ export const userUpdateProfile = (userData) => ({
   payload: userData,
 });
 
+export const userChangeEmail = (data) => ({
+  type: USER_CHANGE_EMAIL,
+  payload: data,
+});
+
 // PRODUCTS
 
 export const productsBySold = (data) => ({
@@ -35,6 +42,11 @@ export const productsBySold = (data) => ({
 export const productsByDate = (data) => ({
   type: GET_PROD_BY_DATE,
   payload: data,
+});
+
+export const productsByPaginate = (products) => ({
+  type: GET_PROD_BY_PAGINATE,
+  payload: products,
 });
 
 // NOTIFICATIONS

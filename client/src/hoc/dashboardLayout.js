@@ -8,8 +8,8 @@ export const links = [
 ];
 
 export const admin = [
-  { name: "Products", linkTo: "/admin/admin_products" },
-  { name: "Manage site", linkTo: "/admin/admin_site" },
+  { name: "Products", linkTo: "/dashboard/admin/admin_products" },
+  { name: "Manage site", linkTo: "/dashboard/admin/admin_site" },
 ];
 
 const DashboardLayout = (props) => {

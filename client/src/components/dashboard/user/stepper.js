@@ -1,13 +1,13 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
+import { userChangeEmail } from "../../../store/actions/users.action";
 import { errorHelper } from "../../../utils/tools";
 import Loader from "../../../utils/loader";
 
 import Modal from "react-bootstrap/Modal";
 
 import { TextField, Button, Stepper, Step, StepLabel } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import usersReducer from "../../../store/reducers/users.reducer";
 
@@ -38,7 +38,8 @@ const EmailStepper = ({ users }) => {
         }),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      setLoading(true);
+      dispatch(userChangeEmail(values));
     },
   });
 
@@ -69,6 +70,13 @@ const EmailStepper = ({ users }) => {
       Back
     </Button>
   );
+
+  useEffect(() => {
+    if (notifications.success) {
+      closeModal();
+    }
+    setLoading(false);
+  }, [notifications.success]);
 
   return (
     <Fragment>
