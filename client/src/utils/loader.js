@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 
 const Loader = ({ full }) => {
   return (
-    <div className={`root_loader' ${full ? "full" : ""}`}>
+    <div className={`root_loader ${full ? "full" : ""}`}>
       <CircularProgress />
     </div>
   );
