@@ -1,6 +1,7 @@
 // USER
 export const AUTH_USER = "auth_user";
 export const SIGN_OUT = "sign_out";
+export const UPDATE_USER_PROFILE = "update_user_profile";
 
 // PRODUCTS
 export const GET_PROD_BY_SOLD = "get_prod_by_sold";

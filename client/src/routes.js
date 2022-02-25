@@ -12,6 +12,7 @@ import Home from "./components/home";
 import RegisterLogin from "./components/auth";
 import UserDashboard from "./components/dashboard";
 import AuthGuard from "./hoc/authGuard";
+import UserInfo from "./components/dashboard/user/info";
 
 const Routes = (props) => {
   const [loading, setLoading] = useState(true);
@@ -43,6 +44,10 @@ const Routes = (props) => {
 
           <MainLayout>
             <Switch>
+              <Route
+                path="/dashboard/user/user_info"
+                component={AuthGuard(UserInfo)}
+              />
               <Route path="/dashboard" component={AuthGuard(UserDashboard)} />
               <Route path="/sign_in" component={RegisterLogin} />
               <Route path="/" component={Home} />
