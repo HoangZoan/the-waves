@@ -1,4 +1,9 @@
-import { SUCCESS_GLOBAL, ERROR_GLOBAL, CLEAR_NOTIFICATION } from "../types";
+import {
+  SUCCESS_GLOBAL,
+  ERROR_GLOBAL,
+  CLEAR_NOTIFICATION,
+  REMOVE_PRODUCT,
+} from "../types";
 
 export default function notificationReducer(state = {}, action) {
   switch (action.type) {
@@ -8,6 +13,8 @@ export default function notificationReducer(state = {}, action) {
       return { ...state, success: true, msg: action.payload };
     case CLEAR_NOTIFICATION:
       return {};
+    case REMOVE_PRODUCT:
+      return { ...state, removeArticle: true };
     default:
       return state;
   }

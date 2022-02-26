@@ -8,8 +8,12 @@ export const USER_CHANGE_EMAIL = "user_change_email";
 export const GET_PROD_BY_SOLD = "get_prod_by_sold";
 export const GET_PROD_BY_DATE = "get_prod_by_date";
 export const GET_PROD_BY_PAGINATE = "get_prod_by_paginate";
+export const REMOVE_PRODUCT = "remove_product";
 
 // NOTIFICATIONS
 export const ERROR_GLOBAL = "error_global";
 export const SUCCESS_GLOBAL = "sucess_global";
 export const CLEAR_NOTIFICATION = "clear_notification";
+
+// BRAND
+export const GET_ALL_BRANDS = "get_all_brands";
