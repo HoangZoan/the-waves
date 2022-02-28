@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const links = [
   { name: "My account", linkTo: "/dashboard" },
   { name: "User information", linkTo: "/dashboard/user_info" },
-  { name: "My cart", linkTo: "/dashboard/user_cart" },
+  { name: "My cart", linkTo: "/dashboard/user/user_cart" },
 ];
 
 export const admin = [
