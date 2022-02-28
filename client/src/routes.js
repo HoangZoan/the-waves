@@ -16,6 +16,7 @@ import UserInfo from "./components/dashboard/user/info";
 import AdminProducts from "./components/dashboard/admin/products";
 import AddProducts from "./components/dashboard/admin/products/addEdit/add";
 import EditProduct from "./components/dashboard/admin/products/addEdit/edit";
+import Shop from "./components/shop";
 
 const Routes = (props) => {
   const [loading, setLoading] = useState(true);
@@ -64,6 +65,7 @@ const Routes = (props) => {
                 component={AuthGuard(UserInfo)}
               />
               <Route path="/dashboard" component={AuthGuard(UserDashboard)} />
+              <Route path="/shop" component={Shop} />
               <Route path="/sign_in" component={RegisterLogin} />
               <Route path="/" component={Home} />
             </Switch>

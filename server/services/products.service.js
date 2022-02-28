@@ -104,7 +104,7 @@ const paginateProducts = async (req) => {
 
     if (
       (req.body.min && req.body.min > 0) ||
-      (req.body.max && req.body.max < 5000)
+      (req.body.max && req.body.max < 200000)
     ) {
       if (req.body.min) {
         aggQueryArray.push({ $match: { price: { $gt: req.body.min } } });
@@ -137,7 +137,7 @@ const paginateProducts = async (req) => {
     let aggQuery = Product.aggregate(aggQueryArray);
     const options = {
       page: req.body.page,
-      limit: 8,
+      limit: 6,
       sort: {
         date: "asc",
       },
