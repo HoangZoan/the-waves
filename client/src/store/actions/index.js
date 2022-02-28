@@ -11,6 +11,10 @@ import {
   GET_PROD_BY_PAGINATE,
   REMOVE_PRODUCT,
   GET_ALL_BRANDS,
+  PRODUCT_ADD,
+  CLEAR_PRODUCT_ADD,
+  GET_PROD_BY_ID,
+  CLEAR_CURRENT_PRODUCT,
 } from "../types";
 
 // USER
@@ -53,6 +57,24 @@ export const productsByPaginate = (products) => ({
 
 export const productRemove = () => ({
   type: REMOVE_PRODUCT,
+});
+
+export const productAdd = (article) => ({
+  type: PRODUCT_ADD,
+  payload: article,
+});
+
+export const clearProductAdd = () => ({
+  type: CLEAR_PRODUCT_ADD,
+});
+
+export const productsById = (product) => ({
+  type: GET_PROD_BY_ID,
+  payload: product,
+});
+
+export const clearCurrentProduct = (product) => ({
+  type: CLEAR_CURRENT_PRODUCT,
 });
 
 // BRANDS

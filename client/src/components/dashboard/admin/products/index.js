@@ -61,7 +61,7 @@ const AdminProducts = (props) => {
   };
 
   const goToEdit = (id) => {
-    props.history.push(`/dashboard/admin/admin_products/edit_products/${id}`);
+    props.history.push(`/dashboard/admin/edit_product/${id}`);
   };
 
   const goToPage = (page) => {

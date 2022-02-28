@@ -36,7 +36,7 @@ const deleteBrandById = async (id) => {
 const getBrands = async (args) => {
   try {
     let order = args.order || "asc";
-    let limit = args.limit || 5;
+    let limit = args.limit || 20;
 
     const brands = await Brand.find({})
       .sort([["_id", order]])

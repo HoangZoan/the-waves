@@ -13,22 +13,27 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { validation } from "./formValues";
+import { validation, formValues, getValuesToEdit } from "./formValues";
 import { getAllBrands } from "../../../../../store/actions/brands.action";
-import { productAdd } from "../../../../../store/actions/products.action";
-// import { clearProductAdd } from "../../../../../store/actions";
+import {
+  productEdit,
+  productsById,
+} from "../../../../../store/actions/products.action";
+import { clearCurrentProduct } from "../../../../../store/actions";
 import PicUpload from "./upload";
 import PicViewer from "./picViewer";
 
-const AddProducts = (props) => {
+const EditProduct = (props) => {
+  const [values, setValues] = useState(formValues);
   const [loading, setLoading] = useState(false);
+  const products = useSelector((state) => state.products);
   const notifications = useSelector((state) => state.notifications);
   const brands = useSelector((state) => state.brands);
   const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
     setLoading(true);
-    dispatch(productAdd(values));
+    dispatch(productEdit(values, props.match.params.id));
   };
 
   const handlePicValue = (pic) => {
@@ -38,17 +43,8 @@ const AddProducts = (props) => {
   };
 
   const formik = useFormik({
-    initialValues: {
-      model: "",
-      brand: "",
-      frets: "",
-      woodtype: "",
-      description: "",
-      price: "",
-      available: "",
-      shipping: false,
-      images: [],
-    },
+    enableReinitialize: true,
+    initialValues: values,
     validationSchema: validation,
     onSubmit: (values) => {
       handleSubmit(values);
@@ -56,14 +52,10 @@ const AddProducts = (props) => {
   });
 
   useEffect(() => {
-    if (notifications && notifications.success) {
-      props.history.push("/dashboard/admin/admin_products");
-    }
-
-    if (notifications && notifications.error) {
+    if (notifications) {
       setLoading(false);
     }
-  }, [notifications, props.history]);
+  }, [notifications]);
 
   const deletePic = (index) => {
     const picArray = formik.values.images;
@@ -72,14 +64,25 @@ const AddProducts = (props) => {
   };
 
   useEffect(() => {
+    const params = props.match.params.id;
     dispatch(getAllBrands());
-  }, [dispatch]);
 
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(clearProductAdd());
-  //   };
-  // }, [dispatch]);
+    if (params) {
+      dispatch(productsById(params));
+    }
+  }, [dispatch, props.match.params.id]);
+
+  useEffect(() => {
+    if (products && products.byId) {
+      setValues(getValuesToEdit(products.byId));
+    }
+  }, [products]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearCurrentProduct());
+    };
+  }, [dispatch]);
 
   return (
     <DashboardLayout title="Add product">
@@ -235,7 +238,7 @@ const AddProducts = (props) => {
             <Divider className="mt-3 mb-3" />
 
             <Button variant="contained" color="primary" type="submit">
-              Add product
+              Edit product
             </Button>
           </form>
         </>
@@ -244,4 +247,4 @@ const AddProducts = (props) => {
   );
 };
 
-export default AddProducts;
+export default EditProduct;
