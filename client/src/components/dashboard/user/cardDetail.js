@@ -9,9 +9,7 @@ const CardDetail = ({ products, removeItem }) => {
           <div
             className="image"
             style={{
-              backgroundImage: `url(${renderCardImage(
-                product.images
-              )}) no-repeat`,
+              background: `url(${renderCardImage(product.images)}) no-repeat`,
             }}
           ></div>
         </div>
@@ -26,7 +24,7 @@ const CardDetail = ({ products, removeItem }) => {
           <div>$ {product.price}</div>
         </div>
         <div className="item btn">
-          <div className="cart_remove_btn" onClick={() => alert("Remove")}>
+          <div className="cart_remove_btn" onClick={() => removeItem(index)}>
             Remove
           </div>
         </div>

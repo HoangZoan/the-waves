@@ -2,8 +2,11 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useSelector } from "react-redux";
 
 const Header = ({ users, signOutUser }) => {
+  const { cart } = useSelector((state) => state.users);
+
   return (
     <header className="bck_b_light">
       <div className="container">
@@ -16,7 +19,7 @@ const Header = ({ users, signOutUser }) => {
             {users.auth ? (
               <Fragment>
                 <div className="cart_link">
-                  <span>0</span>
+                  <span>{cart.length}</span>
                   <Link to="/dashboard/user/user_cart">My Cart</Link>
                 </div>
 
